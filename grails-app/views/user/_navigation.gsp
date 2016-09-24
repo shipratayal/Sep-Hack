@@ -25,8 +25,8 @@
                             class="hidden-sm text">Buttons</span></a></li>
                 </ul>
             </li>
-            <li><a href="widgets.html"><i class="fa fa-dashboard"></i><span
-                    class="hidden-sm text">Widgets</span></a></li>
+            <li><g:link action="list" controller="repository"><i class="fa fa-eye"></i><span
+                    class="hidden-sm text">User</span></g:link></li>
 
         </ul>
 
