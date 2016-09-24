@@ -1,11 +1,12 @@
 package com.nexthoughts.issuetracker.enums
 
-enum ObjectStatus {
-    OLD("Old"), CURRENT("Current")
+enum IssueStatus {
+    OPEN("Open"),
+    CLOSED("Closed")
 
     String value
 
-    ObjectStatus(String value) {
+    IssueStatus(String value) {
         this.value = value
     }
 
