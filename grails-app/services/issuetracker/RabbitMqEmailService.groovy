@@ -3,6 +3,7 @@ package issuetracker
 import com.MailCO
 import com.User
 import com.nexthoughts.issuetracker.Repository
+import com.nexthoughts.issuetracker.rabbitmq.messages.IssueOpenedMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.SignUpMailMessage
@@ -46,6 +47,14 @@ class RabbitMqEmailService {
     def sendRepositoryDeletionMail(RepositoryDeletedMessage message) {
         MailCO mailCO = new MailCO(message)
         mailService.sendSimpleMailWithoutAttachment(mailCO)
+    }
+
+    def sendIssueCreationMail(IssueOpenedMessage message) {
+        message.toList.each { String userName ->
+            MailCO mailCO = new MailCO(message, userName)
+            mailService.sendSimpleMailWithoutAttachment(mailCO)
+        }
+
     }
 
 

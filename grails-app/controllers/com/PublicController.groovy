@@ -1,9 +1,10 @@
 package com
 
-import com.nexthoughts.issuetracker.Repository
 import com.nexthoughts.issuetracker.issuetracker.AppUtil
 import com.nexthoughts.issuetracker.issuetracker.UserCO
+import com.nexthoughts.issuetracker.rabbitmq.messages.IssueOpenedMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.SignUpMailMessage
+import com.nexthoughts.stuff.Issue
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured("permitAll")
@@ -54,7 +55,10 @@ class PublicController {
     }
 
     def test() {
-        Repository repository = Repository.get(1 as Long)
-        render view: "/test", model: [repository: repository]
+        Issue issue = Issue.get(1 as Long)
+        def list = User.getTeamMembersByRepository(issue?.project?.id as Long)
+        IssueOpenedMessage issueOpenedMessage = new IssueOpenedMessage(issue, list)
+        println issueOpenedMessage?.properties
+        render view: "/test", model: [mail: issueOpenedMessage,sendTo:"Nakul"]
     }
 }

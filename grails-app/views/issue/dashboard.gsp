@@ -81,9 +81,6 @@
                 <div id="showIssue">
                     <g:render template="showIssue" model="[issues: issues]"/>
                 </div>
-                <g:each in="${issues}" var="issue" status="index">
-
-                </g:each>
             </div>
         </div>
 

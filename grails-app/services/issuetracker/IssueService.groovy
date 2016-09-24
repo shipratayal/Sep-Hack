@@ -4,6 +4,7 @@ import com.User
 import com.nexthoughts.issuetracker.Repository
 import com.nexthoughts.issuetracker.issuetracker.AppUtil
 import com.nexthoughts.issuetracker.issuetracker.IssueCO
+import com.nexthoughts.issuetracker.rabbitmq.messages.IssueOpenedMessage
 import com.nexthoughts.stuff.Issue
 import com.nexthoughts.stuff.Label
 import com.nexthoughts.stuff.MileStone
@@ -38,6 +39,12 @@ class IssueService {
 
         Repository repository = Repository.get(issueCO.repositoryId)
         issue.project = repository
-        AppUtil.save(issue)
+        if (AppUtil.save(issue)) {
+            IssueOpenedMessage message = new IssueOpenedMessage(issue, User.getTeamMembersByRepository(issue?.project?.id as Long))
+            rabbitSend "email", "email.issue", message
+            return true
+        } else {
+            return false
+        }
     }
 }

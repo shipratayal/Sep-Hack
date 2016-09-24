@@ -1,5 +1,6 @@
 package com
 
+import com.nexthoughts.issuetracker.rabbitmq.messages.IssueOpenedMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
 
 class MailCO {
@@ -19,5 +20,13 @@ class MailCO {
         this.subject = "Repository Successfully deleted"
         this.modelMap = [firstName: message?.firstName, repositoryName: message?.repositoryName]
         this.createdBy = message?.user
+    }
+
+    MailCO(IssueOpenedMessage message, String to){
+        this.to = [to]
+        this.viewFileName = "/test"
+        this.subject = "New Issue Created"
+        this.modelMap = [mail:message]
+        this.createdBy = message?.createdBy
     }
 }
