@@ -9,7 +9,6 @@ class UserCO {
     String confirmPassword
     String firstName
     String lastName
-    String profile
 
     static constraints = {
         username blank: false, nullable: false
@@ -21,7 +20,6 @@ class UserCO {
         }
         firstName blank: false, nullable: false
         lastName blank: false, nullable: false
-        profile blank: false, nullable: false
 
     }
 }

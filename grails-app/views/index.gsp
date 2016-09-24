@@ -6,6 +6,8 @@
 </head>
 
 <body>
+
+
 <div class="container-fluid content">
     <div class="row">
         <div id="content" class="col-sm-12 full">
@@ -57,7 +59,8 @@
                     </form>
 
                     %{--<a class="pull-left" href="page-login.html#">Forgot Password?</a>--}%
-                    %{--<a class="pull-right" href="page-register.html">Sign Up!</a>--}%
+                    <g:link action="signUp" controller="user" class="pull-right">SIGN UP</g:link>
+
 
                     <div class="clearfix"></div>
 
