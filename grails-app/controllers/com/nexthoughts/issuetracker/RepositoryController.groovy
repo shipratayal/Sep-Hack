@@ -107,10 +107,10 @@ class RepositoryController {
     }
 
     def showTickets() {
-        println("========= repositoryId = "+params.id)
+        println("========= repositoryId = " + params.id)
         Long repositoryId = params.id as Long
         Repository repository = Repository.get(repositoryId)
         List<Issue> issues = Issue.findAllByProject(repository)
-        render(view: 'dashboard', model: [repositoryId : repositoryId, issues: issues])
+        render(view: 'dashboard', model: [repositoryId: repositoryId, issues: issues])
     }
 }
