@@ -8,6 +8,7 @@ class UrlMappings {
         }
 
         "/"(controller: 'public', action: 'index')
+        "/dashboard"(controller: 'user', action: 'dashboard')
         "/register"(controller: "public", action: "register")
         "/signup"(controller: "public", action: "signUp")
         "/repository"(controller: 'repository', action: 'index')

@@ -1,6 +1,7 @@
 package com.nexthoughts.issuetracker
 
 import com.nexthoughts.stuff.Issue
+import com.User
 import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
@@ -9,13 +10,14 @@ import grails.transaction.Transactional
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 @Transactional(readOnly = true)
 class RepositoryController {
-
+    def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Integer max) {
+        User user = springSecurityService.currentUser
         params.max = Math.min(params.max ?: 10, 100)
-        respond Repository.list(params), model: [repositoryInstanceCount: Repository.count()]
+        respond Repository.list(params), model: [repositoryInstanceCount: Repository.count(), user: user]
     }
 
     def create() {

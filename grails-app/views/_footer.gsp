@@ -5,12 +5,12 @@
     <div class="row">
 
         <div class="col-sm-5">
-        &copy; 2014 creativeLabs. <a href="http://bootstrapmaster.com">Admin Templates</a> by BootstrapMaster
+        &copy; 2016 FintachLabs.
         </div><!--/.col-->
 
         <div class="col-sm-7 text-right">
-            Powered by: <a href="http://bootstrapmaster.com/demo/clever/"
-                           alt="Bootstrap Admin Templates">cleverAdmin</a> | Based on Bootstrap 3.1.1 | Built with Brix.io
+            Powered by: <a href="http://fintechlabs.in/"
+                           alt="Bootstrap Admin Templates">FINTECHLABS</a>
         </div>
 
     </div>

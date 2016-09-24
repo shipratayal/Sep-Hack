@@ -14,15 +14,9 @@ class WebTrackController {
     def springSecurityService
 
     def list = {
-        String webPage = MixPanel.basicRestCall("https://mixpanel.com/api/2.0/engage")
-        JSONObject obj = new JSONObject(webPage)
-        println "=========================================================" + obj.getString("results")
-        String eventType = "click nav a link"
-        def userList = new JsonSlurper().parseText(obj.getString("results"))
-        userList.each { println "USER=======================" + it }
         User user = springSecurityService.currentUser
         println("=========Current User========${user}")
-        webPage = MixPanel.basicRestCall('https://data.mixpanel.com/api/2.0/export/?from_date=2016-09-24&to_date=2016-9-24')
+        String webPage = MixPanel.basicRestCall('https://data.mixpanel.com/api/2.0/export/?from_date=2016-09-24&to_date=2016-9-24')
 
         String[] webPageArray = webPage.split("}}")
         List<String> eventStringList = []
@@ -48,7 +42,7 @@ class WebTrackController {
             eventVO.url = eventObj.properties.url
             eventList.add(eventVO)
         }
-        render(view: 'list', model: [totalUser: obj.getString("total"), userList: userList, user: user, eventList: eventList, eventType: "All Event", eventSize: eventList.size()])
+        render(view: 'list', model: [eventList: eventList.reverse(), eventType: "All Event", eventSize: eventList.size()])
 
     }
 
