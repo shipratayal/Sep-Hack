@@ -19,7 +19,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
             <td>
-                <g:link action="edit" id="${issue.id}">
+                <g:link action="index" id="${issue.id}">
                     ${fieldValue(bean: issue, field: "title")}
                 </g:link>
             </td>
