@@ -16,6 +16,9 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
+
+            <g:link controller="team" action="createTeam">Create Team</g:link>
+
             <h1>Notifications</h1>
 
             <div class="timeslot">
