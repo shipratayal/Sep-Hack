@@ -14,7 +14,7 @@
 
             <div class="panel-body">
                 <div class="pull-right">
-                    <a href="${createLink(controller: 'issue', action: 'createIssue')}"
+                    <a href="${createLink(controller: 'issue', action: 'createIssue', params: [repositoryId: repositoryId])}"
                        class="btn btn-success">New Issue</a>
                 </div>
             </div>

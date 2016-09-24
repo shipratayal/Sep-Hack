@@ -10,5 +10,5 @@ class IssueCO {
     List<String> labels
     String milestone
     List<String> authors
-
+    String repositoryId
 }

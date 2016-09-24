@@ -106,6 +106,7 @@ class RepositoryController {
     }
 
     def showTickets() {
-        render(view: 'dashboard')
+        Long repositoryId = params.id as Long
+        render(view: 'dashboard', model: [repositoryId : repositoryId])
     }
 }

@@ -11,20 +11,12 @@ class IssueController {
     IssueService issueService
 
     def createIssue() {
-        render(view: 'create')
+        render(view: 'create',model: [repositoryId : params.repositoryId])
     }
 
     def submitIssue = { IssueCO issueCO ->
-
         issueService.saveIssue(issueCO)
-//        println("========== Submit Issue Action ===========")
-//        println("===== Title = "+params.title)
-//        println("===== Description = "+params.editor1)
-//        println("===== labels = "+params.list("labels"))
-//        println("===== milestone = "+params.list("milestone"))
-//        println("===== authors = "+params.list("authors"))
-
-
-        render "succeessfull"
+//        here call the method to send notification asynchronously
+        redirect(controller: 'repository' , action: 'showTickets' , params: [repositoryId: issueCO.repositoryId])
     }
 }

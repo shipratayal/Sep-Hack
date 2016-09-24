@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <g:select id="label" name='labels'
-                                              noSelection="${['null': 'Select Label']}"
+                                              noSelection="${[[]: 'Select Label']}"
                                               from='${Label.list()}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
@@ -66,13 +66,14 @@
 
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
-                                              noSelection="${['null': 'Select Assignee']}"
+                                              noSelection="${[[]: 'Select Assignee']}"
                                               from='${User.list()}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
                                 </div>
+                                <input type="hidden" name="repositoryId" value="${repositoryId}">
                             </div>
                         </div>
                     </div>
