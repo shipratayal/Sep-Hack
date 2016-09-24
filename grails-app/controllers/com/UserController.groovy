@@ -7,8 +7,13 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class UserController {
 
+    def springSecurityService
+
     def dashboard() {
-        render(view: 'dashboard')
+        User user = springSecurityService.currentUser
+
+        println("================+USER========${user}")
+        render(view: 'dashboard', model: [user: user])
     }
 
 
@@ -18,8 +23,8 @@ class UserController {
             User user = new User(userCO)
             AppUtil.save(user)
             UserRole userRole = new UserRole(role: role, user: user)
-            if(AppUtil.save(userRole))
-            render(view: '/index')
+            if (AppUtil.save(userRole))
+                render(view: '/index')
         } else {
             render(view: '/signUp')
         }

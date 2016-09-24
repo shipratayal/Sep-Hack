@@ -73,10 +73,10 @@
 
                             <td style="width:40px;"><g:formatBoolean boolean="${repositoryInstance.isDeleted}"/></td>
 
-                            %{--<td><g:formatDate date="${repositoryInstance.lastUpdated}"/></td>--}%
-                            %{--<td style="width:40px"><g:link class="btn btn-primary" controller="repository"--}%
-                                                           %{--action="edit"--}%
-                                                           %{--id="${repositoryInstance.id}">EDIT</g:link></td>--}%
+                        %{--<td><g:formatDate date="${repositoryInstance.lastUpdated}"/></td>--}%
+                        %{--<td style="width:40px"><g:link class="btn btn-primary" controller="repository"--}%
+                        %{--action="edit"--}%
+                        %{--id="${repositoryInstance.id}">EDIT</g:link></td>--}%
                             <g:form url="[resource: repositoryInstance, action: 'delete']" method="DELETE">
                                 <fieldset class="buttons">
                                     <td><g:link class="edit" action="edit" resource="${repositoryInstance}"><g:message

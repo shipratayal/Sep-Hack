@@ -9,7 +9,7 @@
 <div class="container-fluid content">
     <div class="row">
 
-        <g:render template="navigation"/>
+        <g:render template="navigation" model="[user: user]"/>
 
         <div class="col-md-10 col-sm-11 main ">
 
@@ -19,4 +19,13 @@
 </div>
 
 </body>
+<script>
+    mixpanel.identify("${user?.id}");
+    mixpanel.people.set({
+        "$first_name": "${user?.firstName}",
+        "$last_name": "${user?.lastName}",
+        "$email": "${user?.username}"
+    });
+
+</script>
 </html>
