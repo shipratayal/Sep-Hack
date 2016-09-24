@@ -1,6 +1,7 @@
 package com
 
 import com.nexthoughts.issuetracker.Repository
+import com.nexthoughts.issuetracker.issuetracker.UserCO
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -25,6 +26,14 @@ class User implements Serializable {
         this()
         this.username = username
         this.password = password
+    }
+
+    User(UserCO userCO) {
+        this()
+        this.username = userCO.username
+        this.password = userCO.password
+        this.firstName = userCO.firstName
+        this.lastName = userCO.lastName
     }
 
     Set<Role> getAuthorities() {
