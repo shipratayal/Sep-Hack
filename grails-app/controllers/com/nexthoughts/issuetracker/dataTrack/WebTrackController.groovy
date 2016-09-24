@@ -3,6 +3,7 @@ package com.nexthoughts.issuetracker.dataTrack
 import com.User
 import com.nexthoughts.issuetracker.datatracker.EventVO
 import com.nexthoughts.issuetracker.datatracker.MixPanel
+import com.nexthoughts.issuetracker.datatracker.UserVO
 import grails.plugin.springsecurity.annotation.Secured
 import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -48,6 +49,26 @@ class WebTrackController {
             eventList.add(eventVO)
         }
         render(view: 'list', model: [totalUser: obj.getString("total"), userList: userList, user: user, eventList: eventList, eventType: "All Event", eventSize: eventList.size()])
+
+    }
+
+    def userList = {
+        String webPage = MixPanel.basicRestCall("https://mixpanel.com/api/2.0/engage")
+        JSONObject obj = new JSONObject(webPage)
+        println "=========================================================" + obj.getString("results")
+        String eventType = "click nav a link"
+        def userList = new JsonSlurper().parseText(obj.getString("results"))
+        userList.each { println "USER=======================" + it }
+        List users = []
+        userList.each {
+            UserVO userVO = new UserVO()
+            obj = new JSONObject(it)
+            userVO.firstName = obj.$properties.$first_name
+            userVO.lastName = obj.$properties.$last_name
+            userVO.userEmailId = obj.$properties.$email
+            users.add(userVO)
+        }
+        render(view: 'userList', model: [userList: users])
 
     }
 }

@@ -30,6 +30,8 @@
                     class="hidden-sm text">Repository</span></a></li>
             <li><g:link action="list" controller="webTrack"><i class="fa fa-eye"></i><span
                     class="hidden-sm text">Tracking Event</span></g:link></li>
+            <li><g:link action="userList" controller="webTrack"><i class="fa fa-eye"></i><span
+                    class="hidden-sm text">Track User</span></g:link></li>
 
         </ul>
 
