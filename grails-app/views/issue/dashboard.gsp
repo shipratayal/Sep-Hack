@@ -42,7 +42,7 @@
                             <div class="col-md-3">
                                 <g:select id="author" name='authors'
                                           noSelection="${['null': 'Select Authors']}"
-                                          from='${com.User.getTeamMembersByRepository(repositoryId)}'
+                                          from='${com.User.list()}'
                                           optionKey="id" optionValue="firstName"
                                           class="form-control input-sm"
                                           size="1"/>
@@ -67,7 +67,7 @@
                             <div class="col-md-3">
                                 <g:select id="author" name='authors'
                                           noSelection="${['null': 'Select Assignee']}"
-                                          from='${User.getTeamMembersByRepository(repositoryId)}'
+                                          from='${User.list()}'
                                           optionKey="id" optionValue="firstName"
                                           class="form-control input-sm"
                                           size="1"/>

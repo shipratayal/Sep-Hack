@@ -67,7 +67,7 @@
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
                                               noSelection="${[[]: 'Select Assignee']}"
-                                              from='${AppUtil.getTeamMembersByRepository(repositoryId)}'
+                                              from='${com.User.list()}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>
