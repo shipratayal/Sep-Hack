@@ -1,47 +1,74 @@
 package com.nexthoughts.issuetracker.dataTrack
 
 import com.User
+import com.nexthoughts.issuetracker.datatracker.EventVO
+import com.nexthoughts.issuetracker.datatracker.MixPanel
+import com.nexthoughts.issuetracker.datatracker.UserVO
+import grails.plugin.springsecurity.annotation.Secured
 import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.web.json.JSONObject
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class WebTrackController {
 
     def springSecurityService
 
-//    def list = {
-//        String webPage = MixPanel.basicRestCall("https://mixpanel.com/api/2.0/engage")
-//        JSONObject obj = new JSONObject(webPage)
-//        println "=========================================================" + obj.getString("results")
-//        String eventType = "click nav a link"
-//        def userList = new JsonSlurper().parseText(obj.getString("results"))
-//        userList.each { println "USER=======================" + it }
-//        User user = springSecurityService.currentUser
-//        webPage = MixPanel.basicRestCall('https://data.mixpanel.com/api/2.0/export/?from_date=2016-08-25&to_date=2016-9-23')
-//
-//        String[] webPageArray = webPage.split("}}")
-//        List<String> eventStringList = []
-//        String str = null
-//        webPageArray.each {
-//            it = it.replaceAll("\n", "")
-//            if (it != null && it.size() > 0) {
-//                str = it + "}}"
-//                eventStringList.add(str)
-//            }
-//        }
-//        JSONObject eventObj = new JSONObject(webPage);
-//        List eventList = []
-//        eventStringList.each {
-//            EventDetailDTO eventDetailDTO = new EventDetailDTO()
-//            eventObj = new JSONObject(it)
-//            eventDetailDTO.eventType = eventObj.event
-//            eventDetailDTO.eventId = eventObj.properties.id
-//            eventDetailDTO.firstName = eventObj.properties.first_name
-//            eventDetailDTO.lastName = eventObj.properties.last_name
-//            eventDetailDTO.userId = eventObj.properties.userId
-//            eventDetailDTO.userEmailId = eventObj.properties.email
-//            eventList.add(eventDetailDTO)
-//        }
-//        render(view: '/admin/index', model: [totalUser: obj.getString("total"), userList: userList, user: user, eventList: eventList, eventType: "All Event", eventSize: eventList.size()])
-//
-//    }
+    def list = {
+        String webPage = MixPanel.basicRestCall("https://mixpanel.com/api/2.0/engage")
+        JSONObject obj = new JSONObject(webPage)
+        println "=========================================================" + obj.getString("results")
+        String eventType = "click nav a link"
+        def userList = new JsonSlurper().parseText(obj.getString("results"))
+        userList.each { println "USER=======================" + it }
+        User user = springSecurityService.currentUser
+        println("=========Current User========${user}")
+        webPage = MixPanel.basicRestCall('https://data.mixpanel.com/api/2.0/export/?from_date=2016-09-24&to_date=2016-9-24')
+
+        String[] webPageArray = webPage.split("}}")
+        List<String> eventStringList = []
+        String str = null
+        webPageArray.each {
+            it = it.replaceAll("\n", "")
+            if (it != null && it.size() > 0) {
+                str = it + "}}"
+                eventStringList.add(str)
+            }
+        }
+        JSONObject eventObj = new JSONObject(webPage);
+        List eventList = []
+        eventStringList.each {
+            EventVO eventVO = new EventVO()
+            eventObj = new JSONObject(it)
+            eventVO.eventType = eventObj.event
+            eventVO.eventId = eventObj.properties.id
+            eventVO.firstName = eventObj.properties.first_name
+            eventVO.lastName = eventObj.properties.last_name
+            eventVO.userId = eventObj.properties.userId
+            eventVO.userEmailId = eventObj.properties.email
+            eventVO.url = eventObj.properties.url
+            eventList.add(eventVO)
+        }
+        render(view: 'list', model: [totalUser: obj.getString("total"), userList: userList, user: user, eventList: eventList, eventType: "All Event", eventSize: eventList.size()])
+
+    }
+
+    def userList = {
+        String webPage = MixPanel.basicRestCall("https://mixpanel.com/api/2.0/engage")
+        JSONObject obj = new JSONObject(webPage)
+        println "=========================================================" + obj.getString("results")
+        String eventType = "click nav a link"
+        def userList = new JsonSlurper().parseText(obj.getString("results"))
+        userList.each { println "USER=======================" + it }
+        List users = []
+        userList.each {
+            UserVO userVO = new UserVO()
+            obj = new JSONObject(it)
+            userVO.firstName = obj.$properties.$first_name
+            userVO.lastName = obj.$properties.$last_name
+            userVO.userEmailId = obj.$properties.$email
+            users.add(userVO)
+        }
+        render(view: 'userList', model: [userList: users])
+
+    }
 }

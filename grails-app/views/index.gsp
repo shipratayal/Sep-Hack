@@ -6,11 +6,6 @@
 </head>
 
 <body>
-<g:if test="${flash.message == "Success"}">
-    <div class="alert alert-success">
-        <strong>Success!</strong>Added User Successfully
-    </div>
-</g:if>
 
 <div class="container-fluid content">
     <div class="row">
