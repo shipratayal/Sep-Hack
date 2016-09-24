@@ -40,11 +40,5 @@
             class="fa fa-angle-double-left"></i></a>
 </div>
 <script>
-    mixpanel.track_links("#repo", "link event", {
-        id: "Repository",
-        "userId": "${user?.id}",
-        "first_name": "${user?.firstName}",
-        "last_name": "${user?.lastName}",
-        "email": "${user?.username}"
-    });
+
 </script>

@@ -9,7 +9,7 @@
 <div class="container-fluid content">
     <div class="row">
 
-        <g:render template="/user/navigation"/>
+        %{--<g:render template="/user/navigation"/>--}%
 
         <div class="col-md-10 col-sm-11 main ">
             <div class="panel panel-primary">

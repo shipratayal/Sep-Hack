@@ -67,6 +67,7 @@
 })(document, window.mixpanel || []);
 mixpanel.init("fe6e0511e774af4eb3fc8fd76dd0bcb5");</script><!-- end Mixpanel -->
 </head>
+
 <body>
 <g:render template="/topHeader"/>
 <div class="container-fluid content">
@@ -75,7 +76,7 @@ mixpanel.init("fe6e0511e774af4eb3fc8fd76dd0bcb5");</script><!-- end Mixpanel -->
         <g:render template="/user/navigation"/>
 
         <div class="col-md-10 col-sm-11 main ">
-        <g:layoutBody/>
+            <g:layoutBody/>
         </div>
     </div>
 </div>
@@ -110,6 +111,13 @@ mixpanel.init("fe6e0511e774af4eb3fc8fd76dd0bcb5");</script><!-- end Mixpanel -->
         "$email": "${user?.username}"
     });
 
+    mixpanel.track_links("#repo", "link event", {
+        id: "Repository",
+        "userId": "${user?.id}",
+        "first_name": "${user?.firstName}",
+        "last_name": "${user?.lastName}",
+        "email": "${user?.username}"
+    });
 
 
 </script>
