@@ -27,4 +27,20 @@ class IssueController {
         List<Issue> issues = Issue.findAllByProject(repository)
         render(view: 'dashboard', model: [repositoryId: id, issues: issues])
     }
+
+    def updateTickets(Long id) {
+        Repository repository = Repository.get(id)
+        List<Issue> issues = Issue.findAllByProject(repository)
+        render(view: 'dashboard', model: [repositoryId: id, issues: issues])
+    }
+
+    def edit(Long id) {
+        Issue issue = Issue.get(id)
+        render(view: 'edit', model: [issue: issue])
+    }
+
+    def index(Long id) {
+        Issue issue = Issue.get(id)
+        render(view: 'index', model: [issue: issue])
+    }
 }
