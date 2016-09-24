@@ -1,7 +1,6 @@
 package com
 
-
-import com.nexthoughts.issuetracker.issuetracker.UserCO
+import com.nexthoughts.issuetracker.Repository
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -24,11 +23,6 @@ class User implements Serializable {
         this()
         this.username = username
         this.password = password
-    }
-
-    User(UserCO userCO) {
-        this.username = userCO.username
-        this.password = userCO.password
     }
 
     Set<Role> getAuthorities() {
@@ -59,4 +53,6 @@ class User implements Serializable {
     static mapping = {
         password column: '`password`'
     }
+
+    static hasMany = [repositories: Repository]
 }
