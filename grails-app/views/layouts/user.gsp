@@ -94,6 +94,14 @@ mixpanel.init("fe6e0511e774af4eb3fc8fd76dd0bcb5");</script><!-- end Mixpanel -->
         toastr.options.closeButton = true;
     })
 
+    mixpanel.identify("${user?.id}");
+    mixpanel.people.set({
+        "$first_name": "${user?.firstName}",
+        "$last_name": "${user?.lastName}",
+        "$email": "${user?.username}"
+    });
+
+
 
 </script>
 </body>
