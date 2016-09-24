@@ -48,7 +48,7 @@
                                 <div class="col-md-12">
                                     <g:select id="label" name='labels'
                                               noSelection="${[[]: 'Select Label']}"
-                                              from='${Label.list()}'
+                                              from='${Label.getLabelsForRepository(repositoryId)}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
@@ -58,7 +58,7 @@
                                 <div class="col-md-12">
                                     <g:select id="milestone" name='milestone'
                                               noSelection="${['null': 'Select Milestone']}"
-                                              from='${Label.list()}'
+                                              from='${com.nexthoughts.stuff.MileStone.getMileStonesForRepository(repositoryId)}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
@@ -67,7 +67,7 @@
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
                                               noSelection="${[[]: 'Select Assignee']}"
-                                              from='${User.list()}'
+                                              from='${User.getTeamMembersByRepository(repositoryId)}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>
