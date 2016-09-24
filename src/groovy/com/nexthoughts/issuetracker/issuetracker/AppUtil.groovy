@@ -1,5 +1,8 @@
 package com.nexthoughts.issuetracker.issuetracker
 
+import com.User
+import com.nexthoughts.issuetracker.Repository
+
 
 class AppUtil {
 
@@ -16,5 +19,15 @@ class AppUtil {
 
         }
         return result
+    }
+
+    public static List<User> getTeamMembersByRepository(def repositoryId) {
+        Set<User> userSet = []
+        Repository.get(repositoryId as Long)?.teams?.each {
+            it.members?.each { User user ->
+                userSet.add(user)
+            }
+        }
+        userSet.asList()
     }
 }

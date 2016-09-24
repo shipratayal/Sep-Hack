@@ -39,12 +39,7 @@ class IssueService {
 
         Repository repository = Repository.get(issueCO.repositoryId)
         issue.project = repository
-        if (AppUtil.save(issue)) {
-            IssueOpenedMessage message = new IssueOpenedMessage(issue, User.getTeamMembersByRepository(issue?.project?.id as Long))
-            rabbitSend "email", "email.issue", message
-            return true
-        } else {
-            return false
-        }
+        AppUtil.save(issue)
+        
     }
 }

@@ -1,4 +1,4 @@
-<%@ page import="com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.nexthoughts.stuff.MileStone; com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="user"/>
@@ -13,8 +13,10 @@
             <div class="panel-heading">Panel heading without title</div>
 
             <div class="panel-body">
-                <a href="${createLink(controller: 'label', action: 'index', params: [repositoryId: repositoryId])}" class="btn btn-default">Label</a>
-                <a href="${createLink(controller: 'label', action: 'index')}" class="btn btn-default">Milestone</a>
+                <a href="${createLink(controller: 'label', action: 'index', params: [repositoryId: repositoryId])}"
+                   class="btn btn-default">Label</a>
+                <a href="${createLink(controller: 'milestone', action: 'index', params: [repositoryId: repositoryId])}"
+                   class="btn btn-default">Milestone</a>
 
                 <div class="pull-right">
                     <a href="${createLink(controller: 'issue', action: 'createIssue', params: [repositoryId: repositoryId])}"
@@ -42,7 +44,7 @@
                             <div class="col-md-3">
                                 <g:select id="author" name='authors'
                                           noSelection="${['null': 'Select Authors']}"
-                                          from='${User.list()}'
+                                          from='${com.User.list()}'
                                           optionKey="id" optionValue="firstName"
                                           class="form-control input-sm"
                                           size="1"/>
@@ -51,7 +53,7 @@
                             <div class="col-md-3">
                                 <g:select id="label" name='labels'
                                           noSelection="${['null': 'Select Label']}"
-                                          from='${Label.list()}'
+                                          from='${Label.getLabelsForRepository(repositoryId)}'
                                           optionKey="id" optionValue="title" class="form-control input-sm"
                                           size="1"/>
                             </div>
@@ -59,7 +61,7 @@
                             <div class="col-md-3">
                                 <g:select id="milestone" name='milestone'
                                           noSelection="${['null': 'Select Milestone']}"
-                                          from='${Label.list()}'
+                                          from='${com.nexthoughts.stuff.MileStone.getMileStonesForRepository(repositoryId)}'
                                           optionKey="id" optionValue="title" class="form-control input-sm"
                                           size="1"/>
                             </div>
