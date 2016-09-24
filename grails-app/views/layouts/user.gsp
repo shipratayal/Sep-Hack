@@ -17,10 +17,19 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
-
 <body>
 <g:render template="/topHeader"/>
-<g:layoutBody/>
+<div class="container-fluid content">
+    <div class="row">
+
+        <g:render template="/user/navigation"/>
+
+        <div class="col-md-10 col-sm-11 main ">
+        <g:layoutBody/>
+        </div>
+    </div>
+</div>
+
 <g:render template="/footer"/>
 <g:render template="/templates/toastMessages"/>
 <script>

@@ -13,12 +13,8 @@ class RepositoryController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(params.max ?: 10, 100)
         respond Repository.list(params), model: [repositoryInstanceCount: Repository.count()]
-    }
-
-    def show(Repository repositoryInstance) {
-        redirect(action: 'index')
     }
 
     def create() {
@@ -102,5 +98,14 @@ class RepositoryController {
             }
             '*' { render status: NOT_FOUND }
         }
+    }
+
+    def filter() {
+        params.max = Math.min(params.max ?: 10, 100)
+        render(template: 'repositoryFilter', model: [repositoryInstanceCount: Repository.count(), repositoryInstanceList: Repository.list(params)])
+    }
+
+    def showTickets() {
+        render(view: 'dashboard')
     }
 }
