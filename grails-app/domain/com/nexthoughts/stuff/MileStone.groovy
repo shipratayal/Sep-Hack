@@ -20,4 +20,8 @@ class MileStone {
         description nullable: true, false: true
         dueDate nullable: false
     }
+
+    public static List<Label> getMileStonesForRepository(def repositoryId){
+        MileStone.findAllByRepository(Repository.get(repositoryId as Long))
+    }
 }
