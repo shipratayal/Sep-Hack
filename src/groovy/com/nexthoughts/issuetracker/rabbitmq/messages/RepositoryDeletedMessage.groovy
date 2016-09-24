@@ -1,7 +1,18 @@
 package com.nexthoughts.issuetracker.rabbitmq.messages
 
-/**
- * Created by nakul on 24/9/16.
- */
-class RepositoryDeletedMessage {
+import com.User
+import com.nexthoughts.issuetracker.Repository
+
+class RepositoryDeletedMessage implements Serializable {
+    String firstName
+    String ownerUserName
+    String repositoryName
+    User user
+
+    RepositoryDeletedMessage(Repository repository,User user) {
+        this.firstName = repository?.owner?.firstName
+        this.ownerUserName = repository?.owner?.username
+        this.repositoryName = repository?.name
+        this.user=user
+    }
 }

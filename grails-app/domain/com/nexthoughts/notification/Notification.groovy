@@ -6,7 +6,7 @@ import com.nexthoughts.issuetracker.enums.NotificationType
 
 class Notification {
     String uniqueId = UUID.randomUUID().toString()
-    NotificationStatus status
+    NotificationStatus status = NotificationStatus.PENDING
     NotificationType type
     User createdBy
     Date dateCreated

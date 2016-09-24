@@ -4,7 +4,8 @@ enum NotificationType {
     ISSUE("Issue"),
     MILESTONE("Milestone"),
     LABEL("Label"),
-    COMMENTS("Comments")
+    COMMENTS("Comments"),
+    REPOSITORY("Email")
 
     String value
 

@@ -803,7 +803,7 @@
                                                                     style="font-size:20px"><span
                                                                         style="color:#3abdf1"><span
                                                                             style="font-family:lucida sans unicode,lucida grande,sans-serif"><span
-                                                                                style="line-height:1.6em">Hi</span>&nbsp;${repository?.owner?.firstName}<span
+                                                                                style="line-height:1.6em">Hi</span>&nbsp;${firstName}<span
                                                                                 style="line-height:1.6em">,</span>
                                                                     </span></span></span><span
                                                                     style="font-size:21px"><span
@@ -817,21 +817,21 @@
                                                                     style="font-size:25px"><span
                                                                         style="color:#3abdf1"><font
                                                                             face="lucida sans unicode, lucida grande, sans-serif"><span
-                                                                                style="line-height:38.4px">You are almos<span
-                                                                                    style="font-family:lucida sans unicode,lucida grande,sans-serif">t there...</span>
+                                                                                style="line-height:38.4px">Repository<span
+                                                                                    style="font-family:lucida sans unicode,lucida grande,sans-serif">Deleted</span>
                                                                         </span></font></span></span><br>
                                                                 <br>
                                                                 &nbsp;</div>
 
                                                             <div style="text-align: center;"><span
                                                                     style="font-size:17px"><span
-                                                                        style="color:#666666">You have successfully created a repository named ${repository?.name}</span>
+                                                                        style="color:#666666">You have successfully deleted the repository named ${repositoryName}</span>
                                                             </span><br>
                                                                 &nbsp;</div>
 
                                                             <div style="text-align: center;"><span
                                                                     style="font-size:17px"><span
-                                                                        style="color:#666666">Click the below link to go to your repository</span>
+                                                                        style="color:#666666">Click the below link to add new repository</span>
                                                             </span><br>
                                                                 &nbsp;</div>
 
@@ -864,7 +864,7 @@
                                                         <td align="center" valign="middle" class="mcnButtonContent"
                                                             style="font-family: Arial;font-size: 24px;padding: 15px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                                             <a class="mcnButton " title="Activate Account"
-                                                               href="${createLink(controller: 'repository', action: 'show',absolute: true)}"
+                                                               href="${createLink(controller: 'repository', action: 'create', absolute: true)}"
                                                                target="_blank"
                                                                style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: block;">Show</a>
                                                         </td>
