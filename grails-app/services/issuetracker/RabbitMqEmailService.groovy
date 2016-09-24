@@ -24,8 +24,6 @@ class RabbitMqEmailService {
             mailCO.viewFileName = "/emailTemplates/signupEmail"
             mailCO.createdBy = user
             mailService.sendSimpleMailWithoutAttachment(mailCO)
-
-            Notification notification = new Notification(mailCO)
         }
     }
 
