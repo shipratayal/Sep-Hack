@@ -10,5 +10,6 @@
 *= require theme/bootstrap.min.css
 *= require theme/jquery-ui.min.css
 *= require theme/style.min.css
+*= require oaster.min.css
 *= require_self
 */
