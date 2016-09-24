@@ -107,12 +107,4 @@ class RepositoryController {
         params.max = Math.min(params.max ?: 10, 100)
         render(template: 'repositoryFilter', model: [repositoryInstanceCount: Repository.count(), repositoryInstanceList: Repository.list(params)])
     }
-
-    def showTickets() {
-        println("========= repositoryId = " + params.id)
-        Long repositoryId = params.id as Long
-        Repository repository = Repository.get(repositoryId)
-        List<Issue> issues = Issue.findAllByProject(repository)
-        render(view: 'dashboard', model: [repositoryId: repositoryId, issues: issues])
-    }
 }
