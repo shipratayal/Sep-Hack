@@ -18,7 +18,7 @@ class UserController {
             User user = new User(userCO)
             AppUtil.save(user)
             UserRole userRole = new UserRole(role: role, user: user)
-            AppUtil.save(userRole)
+            if(AppUtil.save(userRole))
             render(view: '/index')
         } else {
             render(view: '/signUp')
