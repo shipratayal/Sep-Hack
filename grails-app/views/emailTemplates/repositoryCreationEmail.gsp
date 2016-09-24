@@ -864,7 +864,7 @@
                                                         <td align="center" valign="middle" class="mcnButtonContent"
                                                             style="font-family: Arial;font-size: 24px;padding: 15px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                                             <a class="mcnButton " title="Activate Account"
-                                                               href="${createLink(controller: 'repository', action: 'show',absolute: true)}"
+                                                               href="${createLink(controller: 'repository', action: 'show', absolute: true)}"
                                                                target="_blank"
                                                                style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: block;">Show</a>
                                                         </td>

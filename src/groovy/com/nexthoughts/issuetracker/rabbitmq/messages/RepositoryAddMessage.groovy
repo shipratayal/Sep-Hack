@@ -1,7 +1,14 @@
 package com.nexthoughts.issuetracker.rabbitmq.messages
 
-/**
- * Created by nakul on 24/9/16.
- */
-class RepositoryAddMessage {
+import com.nexthoughts.issuetracker.Repository
+
+
+class RepositoryAddMessage implements Serializable{
+
+    Long repositoryId
+
+    RepositoryAddMessage(Repository repository) {
+        println "creating repository message"
+        this.repositoryId = repository?.id
+    }
 }

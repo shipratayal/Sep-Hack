@@ -156,6 +156,7 @@ rabbitmq {
         exchange name: 'email', type: topic, durable: true, autoDelete: false, {
             signupEmail durable: true, autoDelete: false, binding: 'email.signup'
             passwordChanged durable: true, autoDelete: false, binding: 'email.password.changed'
+            repositoryCreation durable: true, autoDelete: false, binding: 'email.repository.creation'
         }
 
     }
