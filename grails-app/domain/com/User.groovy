@@ -34,6 +34,7 @@ class User implements Serializable {
         this.password = userCO.password
         this.firstName = userCO.firstName
         this.lastName = userCO.lastName
+        this.profile = userCO.profile as Enums.Profile
     }
 
     Set<Role> getAuthorities() {
