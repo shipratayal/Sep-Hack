@@ -2,7 +2,7 @@ package com
 
 class MailCO {
 
-    String from
+    String from = "testing@sparkpostbox.com"
     List<String> to
     String viewFileName
     Map modelMap

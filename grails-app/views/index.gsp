@@ -6,6 +6,12 @@
 </head>
 
 <body>
+<g:if test="${flash.message == "Success"}">
+    <div class="alert alert-success">
+        <strong>Success!</strong>Added User Successfully
+    </div>
+</g:if>
+
 <div class="container-fluid content">
     <div class="row">
         <div id="content" class="col-sm-12 full">
@@ -24,7 +30,8 @@
                                 <div class="controls row">
                                     <div class="input-group col-sm-12">
                                         <input type="text" class="form-control" id="j_username" name="j_username"
-                                               placeholder="Username or E-mail" required autofocus name="j_username"/>
+                                               placeholder="Username or E-mail" required autofocus
+                                               name="j_username"/>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
@@ -33,7 +40,8 @@
                             <div class="form-group">
                                 <div class="controls row">
                                     <div class="input-group col-sm-12">
-                                        <input type="password" class="form-control" id="j_password" name="j_password"
+                                        <input type="password" class="form-control" id="j_password"
+                                               name="j_password"
                                                placeholder="Password"/>
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                     </div>
@@ -57,7 +65,8 @@
                     </form>
 
                     %{--<a class="pull-left" href="page-login.html#">Forgot Password?</a>--}%
-                    %{--<a class="pull-right" href="page-register.html">Sign Up!</a>--}%
+                    <g:link action="signUp" controller="public" class="pull-right">SIGN UP</g:link>
+
 
                     <div class="clearfix"></div>
 
