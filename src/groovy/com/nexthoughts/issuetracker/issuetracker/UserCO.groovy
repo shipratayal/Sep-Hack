@@ -1,5 +1,6 @@
 package com.nexthoughts.issuetracker.issuetracker
 
+import com.User
 import grails.validation.Validateable
 
 @Validateable

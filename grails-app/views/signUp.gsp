@@ -7,6 +7,12 @@
 </head>
 
 <body>
+<g:if test="${flash.message}">
+    <div class="alert alert-danger">
+        ${flash.message}
+    </div>
+</g:if>
+
 <div class="container-fluid content">
     <div class="row">
         <div id="content" class="col-sm-12 full">
@@ -17,7 +23,7 @@
                         Create a Free Account
                     </div>
 
-                    <g:form class="form-horizontal login" controller="user" action="create"
+                    <g:form class="form-horizontal login" controller="public" action="register"
                             method="post">
 
                         <fieldset class="col-sm-12">

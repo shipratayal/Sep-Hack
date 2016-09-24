@@ -1,6 +1,6 @@
 package issuetracker
 
-import com.nexthoughts.issuetracker.UserController
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
