@@ -12,6 +12,7 @@
 //= require theme/custom.min.js
 //= require theme/core.min.js
 //= require theme/pages/login.js
+//= require toaster.min.js
 //= require_self
 
 if (typeof jQuery !== 'undefined') {

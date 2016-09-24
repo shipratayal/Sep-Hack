@@ -10,6 +10,7 @@
     <title><g:layoutTitle default="cleverAdmin - Bootstrap Admin Template"/></title>
     <g:layoutHead/>
     <asset:stylesheet src="application.css"/>
+    <asset:stylesheet src="toaster.min.css"/>
     <asset:javascript src="application.js"/>
     <link rel="shortcut icon" href="${assetPath(src: 'theme/ico/favicon.png')}" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -21,5 +22,27 @@
 <g:render template="/topHeader"/>
 <g:layoutBody/>
 <g:render template="/footer"/>
+<g:render template="/templates/toastMessages"/>
+<script>
+    $(document).ready(function () {
+        window.setTimeout(function () {
+            $("#flashError").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 3000);
+    });
+
+    $(document).ready(function () {
+        toastr.options.debug = false
+        toastr.options.positionClass = 'toast-top-right'
+        toastr.options.onclick = null
+        toastr.options.fadeIn = 300
+        toastr.options.fadeOut = 1000
+        toastr.options.timeOut = 8000
+        toastr.options.extendedTimeOut = 1000
+        toastr.options.preventDuplicates = true;
+        toastr.options.closeButton = true;
+    })
+</script>
 </body>
 </html>

@@ -2,11 +2,13 @@ package com
 
 import com.nexthoughts.issuetracker.issuetracker.AppUtil
 import com.nexthoughts.issuetracker.issuetracker.UserCO
+import com.nexthoughts.issuetracker.rabbitmq.messages.SignUpMailMessage
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured("permitAll")
 class PublicController {
     def springSecurityService
+    def rabbitMqEmailService
 
     def index() {
         User user = springSecurityService.currentUser
@@ -27,21 +29,30 @@ class PublicController {
     def register(UserCO userCO) {
         Role role = Role.findByAuthority("ROLE_USER")
         if (User.list().username.contains(userCO.username)) {
-            flash.message = "User Name already exist"
+            flash.error = "User is already registered with the entered email address"
             render(view: '/signUp')
         } else {
             if (userCO.validate()) {
                 User user = new User(userCO)
                 AppUtil.save(user)
                 UserRole userRole = new UserRole(role: role, user: user)
-                AppUtil.save(userRole)
-                flash.message = "Success"
-                render(view: '/index')
+                if (AppUtil.save(userRole)) {
+                    SignUpMailMessage message = new SignUpMailMessage(userId: user?.id)
+                    rabbitSend "email","email.signup",message
+                    flash.success = "Your account has been successfully created"
+                    render(view: '/index')
+                } else {
+                    flash.error = "Your account has not been created"
+                    render(view: '/signUp')
+                }
             } else {
-                flash.message = "Wrong Credentials"
+                flash.error = "Your account has not been created"
                 render(view: '/signUp')
             }
         }
+    }
 
+    def test() {
+        render view: "/test"
     }
 }
