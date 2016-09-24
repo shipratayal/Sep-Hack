@@ -8,9 +8,12 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class UserController {
 
+    def springSecurityService
+
     def dashboard() {
+        User user = springSecurityService.currentUser
         params.max = Math.min(params.max ?: 10, 100)
-        render(view: 'dashboard', model: [repositoryInstanceList: Repository.list(params), repositoryInstanceCount: Repository.count()])
+        render(view: 'dashboard', model: [user: user,repositoryInstanceList: Repository.list(params), repositoryInstanceCount: Repository.count()])
     }
 
 
