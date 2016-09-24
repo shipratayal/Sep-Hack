@@ -11,10 +11,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a href="javascript:void(0)" class="btn btn-default">Label</a>
-                <a href="${createLink(controller: 'label', action: 'index')}" class="btn btn-default">Milestone</a>
+                %{--<a href="${createLink(controller: 'label', action: 'index')}" class="btn btn-default">Milestone</a>--}%
 
                 <div class="pull-right">
-                    <a href="${createLink(controller: 'label', action: 'createLabel')}"
+                    <a href="${createLink(controller: 'label', action: 'createLabel', params: [repositoryId: repositoryId])}"
                        class="btn btn-success">New Label</a>
                 </div>
             </div>

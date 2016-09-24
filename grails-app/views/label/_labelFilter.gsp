@@ -11,16 +11,25 @@
     </thead>
     <tbody>
     <g:each in="${labelInstanceList}" status="i" var="labelInstance">
+        <g:form controller="label">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td>
-                <g:link action="edit" id="${labelInstance.title}">
-                    ${fieldValue(bean: labelInstance, field: "title")}
-                </g:link>
+                    <input type="text" name="labelName" value="${fieldValue(bean: labelInstance, field: "title")}">
             </td>
 
-            <td>${fieldValue(bean: labelInstance, field: "description")}</td>
+            <td>
+                <input type="text" name="labelColor" value="${fieldValue(bean: labelInstance, field: "color")}">
+                <input type="hidden" name="labelId" value="${labelInstance.id}">
+                <input type="hidden" name="repositoryId" value="${repositoryId}">
+            </td>
+
+            <td>
+                <g:actionSubmit value="Delete" action="deleteLabel"></g:actionSubmit>
+                <g:actionSubmit value="Update" action="updateLabel"></g:actionSubmit>
+            </td>
 
         </tr>
+        </g:form>
     </g:each>
     </tbody>
 </table>
