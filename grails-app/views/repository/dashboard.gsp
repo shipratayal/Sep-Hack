@@ -14,13 +14,13 @@
 
             <div class="panel-body">
                 <div class="pull-right">
-                    <a href="${createLink(controller: 'issue', action: 'createIssue')}"
+                    <a href="${createLink(controller: 'issue', action: 'createIssue', params: [repositoryId: repositoryId])}"
                        class="btn btn-success">New Issue</a>
                 </div>
             </div>
         </div>
 
-    </div><!--/col-->
+    </div>
 </div>
 
 <div class="row">
@@ -75,6 +75,12 @@
             </div>
 
             <div class="panel-body">
+                <div id="showIssue">
+                    <g:render template="showIssue" model="[issues: issues]"/>
+                </div>
+                <g:each in="${issues}" var="issue" status="index">
+
+                </g:each>
             </div>
         </div>
 

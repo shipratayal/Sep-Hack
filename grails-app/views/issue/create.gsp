@@ -1,6 +1,8 @@
 <%@ page import="com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
     <meta name="layout" content="user"/>
     <title>Welcome !!</title>
 </head>
@@ -16,7 +18,7 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="email" id="email-input" name="email-input" class="form-control"
+                                    <input type="text" id="title" name="title" class="form-control"
                                            placeholder="Title" required autofocus>
                                     <span class="help-block">Please enter your Title</span>
                                 </div>
@@ -24,7 +26,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                                    <textarea id="textarea-input" name="editor1" rows="9" class="form-control"
                                               placeholder="Description.."></textarea>
                                 </div>
                             </div>
@@ -45,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <g:select id="label" name='labels'
-                                              noSelection="${['null': 'Select Label']}"
+                                              noSelection="${[[]: 'Select Label']}"
                                               from='${Label.list()}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
@@ -64,13 +66,14 @@
 
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
-                                              noSelection="${['null': 'Select Assignee']}"
+                                              noSelection="${[[]: 'Select Assignee']}"
                                               from='${User.list()}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
                                 </div>
+                                <input type="hidden" name="repositoryId" value="${repositoryId}">
                             </div>
                         </div>
                     </div>
@@ -79,5 +82,8 @@
         </form>
     </div>
 </div>
+<script>
+    CKEDITOR.replace( 'editor1' );
+</script>
 </body>
 </html>

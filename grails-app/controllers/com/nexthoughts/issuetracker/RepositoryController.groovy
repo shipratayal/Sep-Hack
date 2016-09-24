@@ -1,5 +1,6 @@
 package com.nexthoughts.issuetracker
 
+import com.nexthoughts.stuff.Issue
 import com.User
 import grails.plugin.springsecurity.annotation.Secured
 
@@ -108,6 +109,10 @@ class RepositoryController {
     }
 
     def showTickets() {
-        render(view: 'dashboard')
+        println("========= repositoryId = " + params.id)
+        Long repositoryId = params.id as Long
+        Repository repository = Repository.get(repositoryId)
+        List<Issue> issues = Issue.findAllByProject(repository)
+        render(view: 'dashboard', model: [repositoryId: repositoryId, issues: issues])
     }
 }
