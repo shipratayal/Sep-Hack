@@ -3,6 +3,7 @@ package com.nexthoughts.issuetracker
 import com.User
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
+import com.nexthoughts.stuff.Issue
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -54,7 +55,9 @@ class RepositoryController {
             }
         }
 
-        /*request.withFormat {
+        /*repositoryInstance.save flush: true
+
+        request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'repository.label', default: 'Repository'), repositoryInstance.id])
                 redirect repositoryInstance
@@ -96,8 +99,6 @@ class RepositoryController {
     def delete(Long repoId) {
         Long id = params?.repoId as Long
         Repository repositoryInstance = Repository.get(id as Long)
-
-
         RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance)
         if (/*repositoryInstance.delete(flush: true)*/ true) {
 //TODO:Add rabbitmq send here rabbit
@@ -126,6 +127,10 @@ class RepositoryController {
     }
 
     def showTickets() {
-        render(view: 'dashboard')
+        println("========= repositoryId = " + params.id)
+        Long repositoryId = params.id as Long
+        Repository repository = Repository.get(repositoryId)
+        List<Issue> issues = Issue.findAllByProject(repository)
+        render(view: 'dashboard', model: [repositoryId: repositoryId, issues: issues])
     }
 }
