@@ -11,12 +11,14 @@ class IssueController {
     IssueService issueService
 
     def createIssue() {
+        println("=========== create issue action id = "+params.repositoryId)
         render(view: 'create',model: [repositoryId : params.repositoryId])
     }
 
     def submitIssue = { IssueCO issueCO ->
+        println("========== submit Issue id = "+params.repositoryId)
         issueService.saveIssue(issueCO)
 //        here call the method to send notification asynchronously
-        redirect(controller: 'repository' , action: 'showTickets' , params: [repositoryId: issueCO.repositoryId])
+        redirect(controller: 'repository' , action: 'showTickets' , params: [id: issueCO.repositoryId])
     }
 }
