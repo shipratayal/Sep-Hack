@@ -1,4 +1,4 @@
-<%@ page import="com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.nexthoughts.issuetracker.issuetracker.AppUtil; com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -67,7 +67,7 @@
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
                                               noSelection="${[[]: 'Select Assignee']}"
-                                              from='${User.getTeamMembersByRepository(repositoryId)}'
+                                              from='${AppUtil.getTeamMembersByRepository(repositoryId)}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>

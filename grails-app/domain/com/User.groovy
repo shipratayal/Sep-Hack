@@ -71,8 +71,8 @@ class User implements Serializable {
 
     public static List<User> getTeamMembersByRepository(def repositoryId) {
         Set<User> userSet = []
-        Repository.get(repositoryId as Long).teams.each {
-            it.members.each { User user ->
+        Repository.get(repositoryId as Long)?.teams?.each {
+            it.members?.each { User user ->
                 userSet.add(user)
             }
         }
