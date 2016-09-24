@@ -3,15 +3,10 @@ package issuetracker
 import com.MailCO
 import com.sparkpost.Client
 import com.sparkpost.exception.SparkPostException
-import com.sparkpost.model.AddressAttributes
-import com.sparkpost.model.AttachmentAttributes
-import com.sparkpost.model.RecipientAttributes
-import com.sparkpost.model.TemplateContentAttributes
-import com.sparkpost.model.TransmissionWithRecipientArray
+import com.sparkpost.model.*
 import com.sparkpost.model.responses.Response
 import com.sparkpost.resources.ResourceTransmissions
 import com.sparkpost.transport.RestConnection
-
 
 class MailService {
 
@@ -29,7 +24,7 @@ class MailService {
                     mailCO.to,
                     mailCO.subject,
                     "",
-                    groovyPageRenderer.render(view: mailCO.viewFileName, model: mailCO.modelMap)
+                    groovyPageRenderer.render(view: mailCO?.viewFileName, model: mailCO?.modelMap)
             )
             println("======== Mail has been sent successfully")
         }

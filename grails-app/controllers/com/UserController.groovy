@@ -14,13 +14,11 @@ class UserController {
 
     def create(UserCO userCO) {
         Role role = Role.findByAuthority("ROLE_USER")
-
         if (userCO.validate()) {
-            println("=================USER=========${userCO.firstName}")
             User user = new User(userCO)
             AppUtil.save(user)
             UserRole userRole = new UserRole(role: role, user: user)
-            AppUtil.save(userRole)
+            if(AppUtil.save(userRole))
             render(view: '/index')
         } else {
             render(view: '/signUp')
@@ -47,4 +45,8 @@ class UserController {
 //        userRole.delete()
 //
 //    }
+
+    def list() {
+        render(view: '/repository/list', model: [userList: User.list()])
+    }
 }
