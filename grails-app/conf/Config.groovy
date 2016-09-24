@@ -95,6 +95,25 @@ environments {
     }
 }
 
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.Role'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/public/index'
+grails.plugin.springsecurity.auth.loginFormUrl = '/'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/'              : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/fonts/**'   : ['permitAll'],
+        '/**/favicon.ico': ['permitAll']
+]
+
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -116,21 +135,6 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.Role'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/'              : ['permitAll'],
-        '/index'         : ['permitAll'],
-        '/index.gsp'     : ['permitAll'],
-        '/assets/**'     : ['permitAll'],
-        '/**/js/**'      : ['permitAll'],
-        '/**/css/**'     : ['permitAll'],
-        '/**/images/**'  : ['permitAll'],
-        '/**/favicon.ico': ['permitAll']
-]
-
 //DataBase Migration Plugin
 grails.plugin.databasemigration.changelogFileName = 'changelog.groovy'
 grails.plugin.databasemigration.updateOnStart = true
@@ -150,7 +154,6 @@ rabbitmq {
         exchange name: 'email', type: topic, durable: true, autoDelete: false, {
             signupEmail durable: true, autoDelete: false, binding: 'email.signup'
             passwordChanged durable: true, autoDelete: false, binding: 'email.password.changed'
-
         }
 
     }

@@ -1,7 +1,6 @@
 package com
 
-import com.nexthoughts.issuetracker.issuetracker.Enums
-import com.nexthoughts.issuetracker.issuetracker.UserCO
+import com.nexthoughts.issuetracker.Repository
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
@@ -17,7 +16,6 @@ class User implements Serializable {
     String password
     String firstName
     String lastName
-    Enums.Profile profile = Enums.Profile.DEVELOPER
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
@@ -27,13 +25,6 @@ class User implements Serializable {
         this()
         this.username = username
         this.password = password
-    }
-
-    User(UserCO userCO) {
-        this.username = userCO.username
-        this.password = userCO.password
-        this.firstName = userCO.firstName
-        this.lastName = userCO.lastName
     }
 
     Set<Role> getAuthorities() {
@@ -59,11 +50,13 @@ class User implements Serializable {
     static constraints = {
         username blank: false, unique: true
         password blank: false
-        firstName nullable: false
-        lastName nullable: false
+        firstName blank: false, minSize: 4, maxSize: 12
+        lastName blank: false, minSize: 4, maxSize: 12
     }
 
     static mapping = {
         password column: '`password`'
     }
+
+    static hasMany = [repositories: Repository]
 }
