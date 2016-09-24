@@ -111,7 +111,8 @@
                             class="label label-primary">42</span></a></li>
                     <li class="divider"></li>
                     <li><a href="${createLink(uri: '/')}"><i class="fa fa-shield"></i> Lock Profile</a></li>
-                    <li><a href="${createLink(uri: '/')}"><i class="fa fa-lock"></i> Logout</a></li>
+                    <li><a href="${createLink(controller: 'logout', action: 'index')}"><i
+                            class="fa fa-lock"></i> Logout</a></li>
                 </ul>
             </li>
             <li><a href="${createLink(uri: '/')}"><i class="fa fa-bars"></i></a></li>
