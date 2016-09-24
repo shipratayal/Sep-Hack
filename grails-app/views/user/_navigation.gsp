@@ -25,8 +25,11 @@
                             class="hidden-sm text">Buttons</span></a></li>
                 </ul>
             </li>
-            <li><g:link action="index" controller="repository"><i class="fa fa-eye"></i><span
-                    class="hidden-sm text">Repository</span></g:link></li>
+            <li><a href="${createLink(action: 'index', controller: 'repository')}" id="repo"><i
+                    class="fa fa-eye"></i><span
+                    class="hidden-sm text">Repository</span></a></li>
+            <li><g:link action="list" controller="webTrack"><i class="fa fa-eye"></i><span
+                    class="hidden-sm text">Tracking Event</span></g:link></li>
 
         </ul>
 
@@ -34,3 +37,12 @@
     <a href="javascript:void(0)" id="main-menu-min" class="full visible-md visible-lg"><i
             class="fa fa-angle-double-left"></i></a>
 </div>
+<script>
+    mixpanel.track_links("#repo", "link event", {
+        id: "Repository",
+        "userId": "${user?.id}",
+        "first_name": "${user?.firstName}",
+        "last_name": "${user?.lastName}",
+        "email": "${user?.username}"
+    });
+</script>
