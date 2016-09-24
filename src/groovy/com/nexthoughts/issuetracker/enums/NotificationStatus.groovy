@@ -1,11 +1,12 @@
 package com.nexthoughts.issuetracker.enums
 
-enum ObjectStatus {
-    OLD("Old"), CURRENT("Current")
+enum NotificationStatus {
+    SENT("Sent"),
+    PENDING("Pending")
 
     String value
 
-    ObjectStatus(String value) {
+    NotificationStatus(String value) {
         this.value = value
     }
 

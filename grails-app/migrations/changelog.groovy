@@ -103,4 +103,6 @@ databaseChangeLog = {
     
 
 	include file: 'repositoryAndTeam.groovy'
+
+	include file: 'stuffAndNotif.groovy'
 }

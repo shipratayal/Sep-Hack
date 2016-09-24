@@ -2,7 +2,8 @@ package com.nexthoughts.issuetracker.enums
 
 enum AccessLevel {
 
-    PUBLIC("Public"),PRIVATE("Private")
+    PUBLIC("Public"),
+    PRIVATE("Private")
 
     String value
 
