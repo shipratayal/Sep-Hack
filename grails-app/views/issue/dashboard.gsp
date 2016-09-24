@@ -1,4 +1,4 @@
-<%@ page import="com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.nexthoughts.stuff.MileStone; com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="user"/>
@@ -44,7 +44,7 @@
                             <div class="col-md-3">
                                 <g:select id="author" name='authors'
                                           noSelection="${['null': 'Select Authors']}"
-                                          from='${User.list()}'
+                                          from='${com.User.getTeamMembersByRepository(repositoryId)}'
                                           optionKey="id" optionValue="firstName"
                                           class="form-control input-sm"
                                           size="1"/>
@@ -53,7 +53,7 @@
                             <div class="col-md-3">
                                 <g:select id="label" name='labels'
                                           noSelection="${['null': 'Select Label']}"
-                                          from='${Label.list()}'
+                                          from='${Label.getLabelsForRepository(repositoryId)}'
                                           optionKey="id" optionValue="title" class="form-control input-sm"
                                           size="1"/>
                             </div>
@@ -61,7 +61,7 @@
                             <div class="col-md-3">
                                 <g:select id="milestone" name='milestone'
                                           noSelection="${['null': 'Select Milestone']}"
-                                          from='${Label.list()}'
+                                          from='${com.nexthoughts.stuff.MileStone.getMileStonesForRepository(repositoryId)}'
                                           optionKey="id" optionValue="title" class="form-control input-sm"
                                           size="1"/>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="col-md-3">
                                 <g:select id="author" name='authors'
                                           noSelection="${['null': 'Select Assignee']}"
-                                          from='${User.list()}'
+                                          from='${User.getTeamMembersByRepository(repositoryId)}'
                                           optionKey="id" optionValue="firstName"
                                           class="form-control input-sm"
                                           size="1"/>

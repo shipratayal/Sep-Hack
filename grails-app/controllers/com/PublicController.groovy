@@ -1,5 +1,6 @@
 package com
 
+import com.nexthoughts.issuetracker.Repository
 import com.nexthoughts.issuetracker.issuetracker.AppUtil
 import com.nexthoughts.issuetracker.issuetracker.UserCO
 import com.nexthoughts.issuetracker.rabbitmq.messages.SignUpMailMessage
@@ -38,7 +39,7 @@ class PublicController {
                 UserRole userRole = new UserRole(role: role, user: user)
                 if (AppUtil.save(userRole)) {
                     SignUpMailMessage message = new SignUpMailMessage(userId: user?.id)
-                    rabbitSend "email","email.signup",message
+                    rabbitSend "email", "email.signup", message
                     flash.success = "Your account has been successfully created"
                     render(view: '/index')
                 } else {
@@ -53,6 +54,7 @@ class PublicController {
     }
 
     def test() {
-        render view: "/test"
+        Repository repository = Repository.get(1 as Long)
+        render view: "/test", model: [repository: repository]
     }
 }

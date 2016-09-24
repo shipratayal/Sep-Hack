@@ -26,4 +26,10 @@ class Repository {
     static mapping = {
         description sqlType: 'text'
     }
+
+    Repository(Repository repo) {
+        this?.name = repo?.name
+        this.description = repo?.description
+        this.owner = repo?.owner
+    }
 }

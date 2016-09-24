@@ -86,6 +86,5 @@ class BootStrapService {
             Team team = new Team(name: 'SepHackthon', teamProfile: TeamProfile.DEVELOPER)
             AppUtil.save(team)
         }
-
     }
 }

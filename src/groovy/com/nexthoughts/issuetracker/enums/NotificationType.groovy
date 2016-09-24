@@ -1,10 +1,13 @@
 package com.nexthoughts.issuetracker.enums
 
 enum NotificationType {
-    ISSUE("Issue"),
+    ISSUE_CREATE("Issue Create"),
+    ISSUE_DELETE("Issue Delete"),
     MILESTONE("Milestone"),
     LABEL("Label"),
-    COMMENTS("Comments")
+    COMMENTS("Comments"),
+    REPOSITORY_CREATE("Repository Create"),
+    REPOSITORY_DELETE("Repository Delete")
 
     String value
 

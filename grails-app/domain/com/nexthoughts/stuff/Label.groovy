@@ -16,4 +16,8 @@ class Label {
         title nullable: false, blank: false
         color nullable: true, false: true
     }
+
+    public static List<Label> getLabelsForRepository(def repositoryId){
+        Label.findAllByRepository(Repository.get(repositoryId as Long))
+    }
 }

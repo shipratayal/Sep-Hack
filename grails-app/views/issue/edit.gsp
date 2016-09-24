@@ -1,4 +1,4 @@
-<%@ page import="com.nexthoughts.issuetracker.issuetracker.AppUtil; com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.nexthoughts.stuff.Label; com.User" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 <body>
 <div class="row">
     <div class="col-md-12">
-        <form action="${createLink(controller: 'issue', action: 'submitIssue')}" method="post"
+        <form action="${createLink(controller: 'issue', action: 'updateTickets')}" method="post"
               enctype="multipart/form-data" class="form-horizontal ">
             <div class="row">
                 <div class="col-sm-8">
@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <input type="text" id="title" name="title" class="form-control"
-                                           placeholder="Title" required autofocus>
+                                           placeholder="Title" value="${issue?.title}">
                                     <span class="help-block">Please enter your Title</span>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="col-md-12">
                                     <g:select id="label" name='labels'
                                               noSelection="${[[]: 'Select Label']}"
-                                              from='${Label.getLabelsForRepository(repositoryId)}'
+                                              from='${Label.list()}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
@@ -58,7 +58,7 @@
                                 <div class="col-md-12">
                                     <g:select id="milestone" name='milestone'
                                               noSelection="${['null': 'Select Milestone']}"
-                                              from='${com.nexthoughts.stuff.MileStone.getMileStonesForRepository(repositoryId)}'
+                                              from='${Label.list()}'
                                               optionKey="id" optionValue="title" class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
@@ -67,13 +67,13 @@
                                 <div class="col-md-12">
                                     <g:select id="author" name='authors'
                                               noSelection="${[[]: 'Select Assignee']}"
-                                              from='${AppUtil.getTeamMembersByRepository(repositoryId)}'
+                                              from='${User.list()}'
                                               optionKey="id" optionValue="firstName"
                                               class="form-control input-sm"
                                               size="1"/>
                                     <hr/>
                                 </div>
-                                <input type="hidden" name="repositoryId" value="${repositoryId}">
+                                <input type="hidden" name="repositoryId" value="${issue?.id}">
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,10 @@
     </div>
 </div>
 <script>
-    CKEDITOR.replace( 'editor1' );
+    CKEDITOR.replace('editor1');
+    $(document).ready(function () {
+        document.getElementById("textarea-input").defaultValue = '${issue?.description}';
+    });
 </script>
 </body>
 </html>
