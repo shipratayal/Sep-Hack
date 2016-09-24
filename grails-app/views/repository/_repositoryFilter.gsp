@@ -33,7 +33,9 @@
 
             <td>${fieldValue(bean: repositoryInstance, field: "accessLevel")}</td>
 
-            <td>${fieldValue(bean: repositoryInstance, field: "isDeleted")}</td>
+            <td><a class="btn btn-danger"
+                   href="${createLink(controller: "repository", action: "delete", params: [repoId: repositoryInstance?.id])}">Delete</a>
+            </td>
 
         </tr>
     </g:each>

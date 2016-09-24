@@ -31,6 +31,8 @@
               value="${repositoryInstance?.accessLevel?.name()}"/>
 
 </div>
+<br>
+<br>
 
 %{--<div class="fieldcontain ${hasErrors(bean: repositoryInstance, field: 'isDeleted', 'error')} ">--}%
 %{--<label for="isDeleted">--}%
@@ -52,6 +54,7 @@
 
 %{--</div>--}%
 
+%{--
 <div class="fieldcontain ${hasErrors(bean: repositoryInstance, field: 'owner', 'error')} required">
     <label for="owner">
         <g:message code="repository.owner.label" default="Owner"/>
@@ -61,8 +64,9 @@
               optionValue="username" value="${repositoryInstance?.owner?.id}" class="many-to-one form-control"/>
 
 </div>
+--}%
 
-<div class="fieldcontain ${hasErrors(bean: repositoryInstance, field: 'teams', 'error')} ">
+%{--<div class="fieldcontain ${hasErrors(bean: repositoryInstance, field: 'teams', 'error')} ">
     <label for="teams">
         <g:message code="repository.teams.label" default="Teams"/>
 
@@ -70,7 +74,7 @@
     <g:select name="teams" from="${com.nexthoughts.issuetracker.Team.list()}" multiple="multiple" optionKey="id"
               optionValue="name" size="5" value="${repositoryInstance?.teams*.id}" class="many-to-many form-control"/>
 
-</div>
+</div>--}%
 
 %{--<div class="fieldcontain ${hasErrors(bean: repositoryInstance, field: 'uniqueId', 'error')} required">--}%
 %{--<label for="uniqueId">--}%

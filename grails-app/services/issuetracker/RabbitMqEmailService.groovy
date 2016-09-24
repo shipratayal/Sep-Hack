@@ -4,6 +4,7 @@ import com.MailCO
 import com.User
 import com.nexthoughts.issuetracker.Repository
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
+import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.SignUpMailMessage
 import grails.transaction.Transactional
 
@@ -35,6 +36,11 @@ class RabbitMqEmailService {
             mailCO.viewFileName = "/emailTemplates/repositoryCreationEmail"
             mailService.sendSimpleMailWithoutAttachment(mailCO)
         }
+    }
+
+    def sendRepositoryDeletionMail(RepositoryDeletedMessage message) {
+        MailCO mailCO = new MailCO(message)
+        mailService.sendSimpleMailWithoutAttachment(mailCO)
     }
 
 

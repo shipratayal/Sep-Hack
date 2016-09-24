@@ -2,10 +2,12 @@ package com.nexthoughts.issuetracker
 
 import com.User
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
+import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
-import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.OK
 
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 @Transactional(readOnly = true)
@@ -39,15 +41,15 @@ class RepositoryController {
         if (repositoryInstance.hasErrors()) {
             respond repositoryInstance.errors, view: 'create'
             return
-        }else{
+        } else {
             Repository repository = new Repository(repositoryInstance).save(flush: true)
-            if(repository){
+            if (repository) {
                 RepositoryAddMessage message = new RepositoryAddMessage(repository)
                 rabbitSend "email", "email.repository.creation", message
-                flash.success="Repository created successfully"
-                redirect action:"index"
-            }else{
-                flash.error="Repository couldnot be saved, Please try again"
+                flash.success = "Repository created successfully"
+                redirect action: "index"
+            } else {
+                flash.error = "Repository couldnot be saved, Please try again"
                 redirect action: "create"
             }
         }
@@ -88,22 +90,23 @@ class RepositoryController {
         }
     }
 
+    def rabbitMqEmailService
+
     @Transactional
-    def delete(Repository repositoryInstance) {
+    def delete(Long repoId) {
+        Long id = params?.repoId as Long
+        Repository repositoryInstance = Repository.get(id as Long)
 
-        if (repositoryInstance == null) {
-            notFound()
-            return
-        }
 
-        repositoryInstance.delete flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Repository.label', default: 'Repository'), repositoryInstance.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NO_CONTENT }
+        RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance)
+        if (/*repositoryInstance.delete(flush: true)*/ true) {
+//TODO:Add rabbitmq send here rabbit
+            rabbitMqEmailService.sendRepositoryDeletionMail(message)
+            flash.success = "Repository has been successfully deleted"
+            redirect action: "index"
+        } else {
+            flash.error = "Repository could not be deleted"
+            redirect action: "index"
         }
     }
 
