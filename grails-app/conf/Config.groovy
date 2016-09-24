@@ -136,3 +136,23 @@ grails.plugin.databasemigration.changelogFileName = 'changelog.groovy'
 grails.plugin.databasemigration.updateOnStart = true
 grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
 
+//RabbitMq Configuration
+
+rabbitmq {
+    connectionfactory {
+        username = 'guest'
+        password = 'guest'
+        hostname = 'localhost'
+//        consumers = 5
+    }
+
+    queues = {
+        exchange name: 'email', type: topic, durable: true, autoDelete: false, {
+            signupEmail durable: true, autoDelete: false, binding: 'email.signup'
+            passwordChanged durable: true, autoDelete: false, binding: 'email.password.changed'
+
+        }
+
+    }
+
+}
