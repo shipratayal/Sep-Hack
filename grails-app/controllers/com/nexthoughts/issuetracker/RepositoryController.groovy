@@ -1,8 +1,10 @@
 package com.nexthoughts.issuetracker
 
 import com.User
+import com.nexthoughts.issuetracker.enums.NotificationType
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
+import com.nexthoughts.notification.Notification
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -13,6 +15,7 @@ import static org.springframework.http.HttpStatus.OK
 @Transactional(readOnly = true)
 class RepositoryController {
     def springSecurityService
+    def notificationService
     static allowedMethods = [save: "POST", update: "PUT", delete: "GET"]
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -47,8 +50,9 @@ class RepositoryController {
             return
         } else {
             Repository repository = new Repository(repositoryInstance).save(flush: true)
+            Notification notification = notificationService.createNotifiction(repositoryInstance, currentUser, NotificationType.REPOSITORY_CREATE)
             if (repository) {
-                RepositoryAddMessage message = new RepositoryAddMessage(repository)
+                RepositoryAddMessage message = new RepositoryAddMessage(repository, notification)
                 rabbitSend "email", "email.repository.creation", message
                 flash.success = "Repository created successfully"
                 redirect action: "index"
@@ -95,7 +99,8 @@ class RepositoryController {
         Repository repositoryInstance = Repository.get(id as Long)
 
         if (user.username == repositoryInstance?.owner?.username) {
-            RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance, user)
+            Notification notification = notificationService.createNotifiction(repositoryInstance, user, NotificationType.REPOSITORY_DELETE)
+            RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance, notification, user)
             repositoryInstance.isDeleted = Boolean.TRUE
             if (repositoryInstance.save(flush: true)) {
                 rabbitSend "email", "email.repository.deletion", message
