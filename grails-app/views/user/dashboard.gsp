@@ -7,244 +7,89 @@
 </head>
 
 <body>
+<br/>
+
 <div class="row page-todo">
-
-    <div class="col-sm-7 tasks">
-
-        <div class="task-list">
-            <h1>Tasks</h1>
-
-            <div class="priority high"><span>high priority</span></div>
-
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task high">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task high last">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="priority medium"><span>medium priority</span></div>
-
-            <div class="task medium">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task medium last">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="priority low"><span>low priority</span></div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="task low">
-                <div class="desc">
-                    <div class="title">Lorem Ipsum</div>
-
-                    <div>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</div>
-                </div>
-
-                <div class="time">
-                    <div class="date">Jun 1, 2012</div>
-
-                    <div>1 day</div>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
-
-        </div>
-
-    </div><!--/col-->
-
-    <div class="col-sm-5">
+    <div class="col-sm-6">
 
         <div class="graph">
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <h1>Repositories</h1>
+            <h1>Notifications</h1>
 
-            <div class="timeline">
-                <div id="list-repository" class="content scaffold-list" role="main">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <util:remoteSortableColumn property="name"
-                                                       title="${message(code: 'name.label', default: 'Name')}"
-                                                       update="list-repository" action="filter"/>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <g:each in="${repositoryInstanceList}" status="i" var="repositoryInstance">
-                            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            <div class="timeslot">
 
-                                <td>
-                                    <a href="${createLink(controller: 'repository', action: 'showTickets')}"
-                                       id="${repositoryInstance.id}">
-                                        ${fieldValue(bean: repositoryInstance, field: "name")}
-                                    </a>
-                                </td>
-                            </tr>
-                        </g:each>
-                        </tbody>
-                    </table>
+                <div class="task">
+                    <span>
+                        <span class="type">appointment</span>
+                        <span class="details">
+                            Lukasz Holeczek at creativeLabs HQ
+                        </span>
+                        <span>
+                            remaining time
+                            <span class="remaining">
+                                3h 38m 15s
+                            </span>
+                        </span>
+                    </span>
 
-                    <util:remotePaginate controller="repository" action="filter" total="${Repository.count()}"
-                                         update="list-repository" max="20"
-                                         pageSizes="[10: '10 Per Page', 20: '20 Per Page', 50: '50 Per Page', 100: '100 Per Page']"/>
-
+                    <div class="arrow"></div>
                 </div>
+
+                <div class="icon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+
+                <div class="time">
+                    3:43 PM
+                </div>
+
             </div>
+
+            <div class="clearfix"></div>
         </div>
     </div>
 
-    <script>
-        function selectAll(checkbox) {
-            var boolean = checkbox.checked;
-            if (boolean) {
-                $('.loanToBeApproved').prop("checked", true);
-            } else {
-                $('.loanToBeApproved').prop("checked", false);
-            }
+    <div class="col-sm-6 tasks">
+
+        <div class="task-list">
+            <h1>Repository</h1>
+
+            <g:each in="${repositoryInstanceList}" status="i" var="repositoryInstance">
+
+                <div class="task high ${i == repositoryInstanceList?.size() ? "last" : ""}">
+                    <div class="desc">
+                        <div class="title">
+                            <a href="${createLink(controller: 'repository', action: 'showTickets')}"
+                               id="${repositoryInstance.id}">
+                                ${fieldValue(bean: repositoryInstance, field: "name")}
+                            </a>
+                        </div>
+
+                        <div>${repositoryInstance?.description}</div>
+                    </div>
+
+                    <div class="time">
+                        <div class="date">${repositoryInstance?.dateCreated}</div>
+                    </div>
+                </div>
+            </g:each>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function selectAll(checkbox) {
+        var boolean = checkbox.checked;
+        if (boolean) {
+            $('.loanToBeApproved').prop("checked", true);
+        } else {
+            $('.loanToBeApproved').prop("checked", false);
         }
-    </script>
+    }
+</script>
 </body>
 </html>
