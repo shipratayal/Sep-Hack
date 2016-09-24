@@ -61,7 +61,7 @@
                 <div class="task high ${i == repositoryInstanceList?.size() ? "last" : ""}">
                     <div class="desc">
                         <div class="title">
-                            <a href="${createLink(mapping: 'repository', params: [id: repositoryInstance.id, name: istrack.convert(value: repositoryInstance?.name)])}">
+                            <a href="${createLink(controller: 'issue', action: 'showTickets', id: repositoryInstance?.id)}">
                                 ${fieldValue(bean: repositoryInstance, field: "name")}
                             </a>
                         </div>

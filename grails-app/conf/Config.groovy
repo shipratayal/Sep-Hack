@@ -157,6 +157,7 @@ rabbitmq {
             signupEmail durable: true, autoDelete: false, binding: 'email.signup'
             passwordChanged durable: true, autoDelete: false, binding: 'email.password.changed'
             repositoryCreation durable: true, autoDelete: false, binding: 'email.repository.creation'
+            repositoryDeletion durable: true, autoDelete: false, binding: 'email.repository.deletion'
         }
 
     }

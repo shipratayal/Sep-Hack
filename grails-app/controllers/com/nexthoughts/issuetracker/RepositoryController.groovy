@@ -3,7 +3,6 @@ package com.nexthoughts.issuetracker
 import com.User
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryAddMessage
 import com.nexthoughts.issuetracker.rabbitmq.messages.RepositoryDeletedMessage
-import com.nexthoughts.stuff.Issue
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
@@ -13,15 +12,19 @@ import static org.springframework.http.HttpStatus.OK
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 @Transactional(readOnly = true)
 class RepositoryController {
-
     def springSecurityService
-
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "GET"]
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Integer max) {
+        User user = springSecurityService.currentUser
         params.max = Math.min(params.max ?: 10, 100)
-        respond Repository.list(params), model: [repositoryInstanceCount: Repository.count()]
+        List<Repository> repositoryList = Repository.list(params)
+        println repositoryList
+        List<Repository> notDeletedList = []
+        notDeletedList = repositoryList?.findAll { !it.isDeleted && it.owner == user }
+        println notDeletedList
+        respond notDeletedList, model: [repositoryInstanceCount: Repository.count(), user: user]
     }
 
     def create() {
@@ -54,16 +57,6 @@ class RepositoryController {
                 redirect action: "create"
             }
         }
-
-        /*repositoryInstance.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'repository.label', default: 'Repository'), repositoryInstance.id])
-                redirect repositoryInstance
-            }
-            '*' { respond repositoryInstance, [status: CREATED] }
-        }*/
     }
 
     def edit(Repository repositoryInstance) {
@@ -97,18 +90,26 @@ class RepositoryController {
 
     @Transactional
     def delete(Long repoId) {
+        User user = springSecurityService.currentUser as User
         Long id = params?.repoId as Long
         Repository repositoryInstance = Repository.get(id as Long)
-        RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance)
-        if (/*repositoryInstance.delete(flush: true)*/ true) {
-//TODO:Add rabbitmq send here rabbit
-            rabbitMqEmailService.sendRepositoryDeletionMail(message)
-            flash.success = "Repository has been successfully deleted"
-            redirect action: "index"
+
+        if (user.username == repositoryInstance?.owner?.username) {
+            RepositoryDeletedMessage message = new RepositoryDeletedMessage(repositoryInstance, user)
+            repositoryInstance.isDeleted = Boolean.TRUE
+            if (repositoryInstance.save(flush: true)) {
+                rabbitSend "email", "email.repository.deletion", message
+                flash.success = "Repository has been successfully deleted"
+                redirect action: "index"
+            } else {
+                flash.error = "Repository could not be deleted"
+                redirect action: "index"
+            }
         } else {
-            flash.error = "Repository could not be deleted"
+            flash.error = "Repository can be deleted only by the owner "
             redirect action: "index"
         }
+
     }
 
     protected void notFound() {
@@ -124,13 +125,5 @@ class RepositoryController {
     def filter() {
         params.max = Math.min(params.max ?: 10, 100)
         render(template: 'repositoryFilter', model: [repositoryInstanceCount: Repository.count(), repositoryInstanceList: Repository.list(params)])
-    }
-
-    def showTickets() {
-        println("========= repositoryId = " + params.id)
-        Long repositoryId = params.id as Long
-        Repository repository = Repository.get(repositoryId)
-        List<Issue> issues = Issue.findAllByProject(repository)
-        render(view: 'dashboard', model: [repositoryId: repositoryId, issues: issues])
     }
 }

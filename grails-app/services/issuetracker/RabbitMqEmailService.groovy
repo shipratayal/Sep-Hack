@@ -43,8 +43,8 @@ class RabbitMqEmailService {
         }
     }
 
-    def sendRepositoryDeletionMail(RepositoryDeletedMessage message, User user) {
-        MailCO mailCO = new MailCO(message, user)
+    def sendRepositoryDeletionMail(RepositoryDeletedMessage message) {
+        MailCO mailCO = new MailCO(message)
         mailService.sendSimpleMailWithoutAttachment(mailCO)
     }
 

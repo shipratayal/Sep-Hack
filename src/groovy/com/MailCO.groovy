@@ -13,11 +13,11 @@ class MailCO {
 
     MailCO(){}
 
-    MailCO(RepositoryDeletedMessage message, User user) {
-        this.to = message?.ownerUserName
+    MailCO(RepositoryDeletedMessage message) {
+        this.to = [message?.ownerUserName]
         this.viewFileName = "/emailTemplates/repositoryDeletionMail"
         this.subject = "Repository Successfully deleted"
         this.modelMap = [firstName: message?.firstName, repositoryName: message?.repositoryName]
-        this.createdBy = user
+        this.createdBy = message?.user
     }
 }
