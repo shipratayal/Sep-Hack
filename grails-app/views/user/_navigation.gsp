@@ -25,8 +25,8 @@
                             class="hidden-sm text">Buttons</span></a></li>
                 </ul>
             </li>
-            <li><g:link action="list" controller="repository"><i class="fa fa-eye"></i><span
-                    class="hidden-sm text">User</span></g:link></li>
+            <li><g:link action="index" controller="repository"><i class="fa fa-eye"></i><span
+                    class="hidden-sm text">Repository</span></g:link></li>
 
         </ul>
 
