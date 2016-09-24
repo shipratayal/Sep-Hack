@@ -104,6 +104,8 @@ grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/public/index'
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = "/"
 grails.plugin.springsecurity.auth.loginFormUrl = '/'
 grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = "/?login_error=1"
+
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/'              : ['permitAll'],
         '/index'         : ['permitAll'],
