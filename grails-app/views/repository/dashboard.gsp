@@ -13,6 +13,9 @@
             <div class="panel-heading">Panel heading without title</div>
 
             <div class="panel-body">
+                <a href="${createLink(controller: 'label', action: 'index')}" class="btn btn-default">Label</a>
+                <a href="${createLink(controller: 'label', action: 'index')}" class="btn btn-default">Milestone</a>
+
                 <div class="pull-right">
                     <a href="${createLink(controller: 'issue', action: 'createIssue', params: [repositoryId: repositoryId])}"
                        class="btn btn-success">New Issue</a>
@@ -20,7 +23,7 @@
             </div>
         </div>
 
-    </div><!--/col-->
+    </div>
 </div>
 
 <div class="row">
