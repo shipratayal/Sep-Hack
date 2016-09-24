@@ -51,6 +51,11 @@ grails.project.dependency.resolution = {
          runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+
+        compile group: 'com.sparkpost', name: 'sparkpost-lib', version: '0.16.1'
+        compile group: 'org.apache.poi', name: 'ooxml-schemas', version: '1.0'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+
     }
 
     plugins {

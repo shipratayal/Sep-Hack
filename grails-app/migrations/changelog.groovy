@@ -104,5 +104,9 @@ databaseChangeLog = {
 
 	include file: 'repositoryAndTeam.groovy'
 
+	include file: 'addFirstNameAndLastNameToUser.groovy'
+
+	include file: 'addProfileToTeam.groovy'
+
 	include file: 'stuffAndNotif.groovy'
 }
