@@ -78,8 +78,11 @@
             </div>
 
             <div class="panel-body">
+                <div id="showIssue">
+                    <g:render template="showIssue" model="[issues: issues]"/>
+                </div>
                 <g:each in="${issues}" var="issue" status="index">
-                    Issue no. ${index+1} = ${issue.title} <br/>
+
                 </g:each>
             </div>
         </div>

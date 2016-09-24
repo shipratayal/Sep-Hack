@@ -9,4 +9,9 @@ class IssueTrackTagLib {
     def convert = { attr, body ->
         out << body() << friendlyUrlService.sanitizeWithDashes(attr.value)
     }
+
+    /*def formatHtml = { attr, body ->
+        String text = attr.data
+        out << text.replaceAll("\\<.*?\\>", "")
+    }*/
 }
